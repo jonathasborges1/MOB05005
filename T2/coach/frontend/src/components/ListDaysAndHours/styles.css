@@ -1,0 +1,12 @@
+.listdayhour{
+   align-content: center;
+   margin-top: 2%;
+ }
+ .dayhour{
+   color: '#6a6180';
+   font-size: 14;
+ }
+ .dayhourValue {
+   color: '#8257e5';
+   font-size: 16;
+ }
