@@ -7,6 +7,7 @@ import Input from '@components/Input';
 
 import CoachItem, { Coach } from '@components/CoachItem';
 import api from '@services/api';
+import React from 'react';
 
 function CoachList() {
   const [coaches, setCoaches] = useState([]);
@@ -18,7 +19,7 @@ function CoachList() {
   async function searchCoaches(e: FormEvent) {
     e.preventDefault();
 
-    const response = await api.get('classes', {
+    const response = await api.get('coachs', {
       params: {
         subject,
         week_day,
@@ -28,6 +29,21 @@ function CoachList() {
 
     setCoaches(response.data);
   }
+
+  const searchAllCoachs = React.useCallback( async() => {
+    const responseCoachs = await api.get('coachs',{});
+    console.info(responseCoachs)
+    setCoaches(responseCoachs.data);
+  }, [] );
+
+  const getAllSubjects = React.useCallback( async() => {
+    const responseCoachs = await api.get('coachs',{});
+
+  }, [] )
+
+  React.useEffect(() =>{
+    searchAllCoachs();
+  },[searchAllCoachs])
 
   return (
     <div id="page-coach-list" className="container">

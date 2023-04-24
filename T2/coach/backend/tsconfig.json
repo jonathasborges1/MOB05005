@@ -5,9 +5,10 @@
      "target": "es5",
      "moduleResolution": "node",
      "outDir": "dist",
-     "baseUrl": ".",
+     "jsx": "react",
+     "baseUrl": "./",
      "paths": {
-       "*": ["node_modules/*", "src/*"]
+       "*": ["node_modules/*", "src/*"]    
      }
    },
    "exclude": ["node_modules", "dist"]
