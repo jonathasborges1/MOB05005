@@ -1,8 +1,12 @@
+import 'reflect-metadata';
+import { injectable } from 'inversify';
 import { Request, Response } from 'express';
-import CoachService from 'service/coach';
 
+import CoachService from '@modules/coach/service';
+
+@injectable()
 class CoachController {
-   private coachService: CoachService;
+   private readonly coachService: CoachService;
 
    /* Inicialização do Serviço */
    constructor() {
@@ -10,7 +14,7 @@ class CoachController {
    }
 
    /* Buscar Todos */
-   async getAll(req: Request, res: Response): Promise<void> {
+   async getAll (req: Request, res: Response): Promise<void> {
       try {
          const coach = await this.coachService.getAll();
          res.status(200).json(coach);

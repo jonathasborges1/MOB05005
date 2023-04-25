@@ -1,18 +1,16 @@
-import express from 'express';
-import CoachController from 'controllers/coach';
 
-const router  = express.Router();
+import express, { Router } from 'express';
+import CoachController from '@modules/coach/controller';
+import CoachService from '@modules/coach/service';
+
+const router: Router  = express.Router();
 const coachController = new CoachController();
 
 // Rota para coaches
-router.get('/coachs', coachController.getAll);
-router.post('/coachs', coachController.create);
-router.get('/coachs/:id', coachController.getCoachById);
-router.put('/coachs/:id', coachController.update);
-router.delete('/coachs/:id', coachController.delete);
+router.get('/', coachController.getAll.bind(coachController));
+router.post('/', coachController.create.bind(coachController));
+router.get('/:id', coachController.getCoachById.bind(coachController));
+router.put('/:id', coachController.update.bind(coachController));
+router.delete('/:id', coachController.delete.bind(coachController));
 
 export default router;
-
-
-
-

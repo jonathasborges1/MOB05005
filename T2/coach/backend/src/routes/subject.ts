@@ -1,9 +1,10 @@
-import express from 'express';
-import SubjectController from 'controllers/subject';
+import express, { Router } from 'express';
+import SubjectController from '@modules/subject/controller';
 
-const router  = express.Router();
+const router: Router  = express.Router();
+const subjectController = new SubjectController();
 
 // Rota para subject
-router.get('/subject', SubjectController.getAll);
+router.get('/', subjectController.getAll.bind(subjectController));
 
 export default router;

@@ -11,8 +11,9 @@ import React from 'react';
 
 function CoachList() {
   const [coaches, setCoaches] = useState([]);
+  const [subject, setSubject ] = useState([]);
+  const [subjectSelected, setSubjectSelected] = useState('');
 
-  const [subject, setSubject] = useState('');
   const [week_day, setWeekDay] = useState('');
   const [time, setTime] = useState('');
 
@@ -30,20 +31,34 @@ function CoachList() {
     setCoaches(response.data);
   }
 
-  const searchAllCoachs = React.useCallback( async() => {
+  const getAllCoachs = React.useCallback( async() => {
     const responseCoachs = await api.get('coachs',{});
     console.info(responseCoachs)
     setCoaches(responseCoachs.data);
   }, [] );
 
   const getAllSubjects = React.useCallback( async() => {
-    const responseCoachs = await api.get('coachs',{});
+    const responseSubjects = await api.get('subjects',{});
+    setSubject(responseSubjects.data);
+  }, [] );
 
-  }, [] )
+  React.useEffect(() => {
+    getAllCoachs();
+    getAllSubjects();
+  },[getAllCoachs, getAllSubjects])
 
-  React.useEffect(() =>{
-    searchAllCoachs();
-  },[searchAllCoachs])
+  // [
+  //   { value: 'Artes', label: 'Artes' },
+  //   { value: 'Biologia', label: 'Biologia' },
+  //   { value: 'Ciências', label: 'Ciências' },
+  //   { value: 'Educação física', label: 'Educação física' },
+  //   { value: 'Física', label: 'Física' },
+  //   { value: 'Geografia', label: 'Geografia' },
+  //   { value: 'História', label: 'História' },
+  //   { value: 'Matemática', label: 'Matemática' },
+  //   { value: 'Português', label: 'Português' },
+  //   { value: 'Química', label: 'Química' },
+  // ]
 
   return (
     <div id="page-coach-list" className="container">
@@ -52,20 +67,9 @@ function CoachList() {
           <Select 
             name="subject" 
             label="Matéria" 
-            value={subject}
-            onChange={e => { setSubject(e.target.value) }}
-            options={[
-              { value: 'Artes', label: 'Artes' },
-              { value: 'Biologia', label: 'Biologia' },
-              { value: 'Ciências', label: 'Ciências' },
-              { value: 'Educação física', label: 'Educação física' },
-              { value: 'Física', label: 'Física' },
-              { value: 'Geografia', label: 'Geografia' },
-              { value: 'História', label: 'História' },
-              { value: 'Matemática', label: 'Matemática' },
-              { value: 'Português', label: 'Português' },
-              { value: 'Química', label: 'Química' },
-            ]}
+            value={subjectSelected}
+            onChange={e => { setSubjectSelected(e.target.value) }}
+            options={subject.map( (sub) => sub )}
           />
 
           <Select 

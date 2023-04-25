@@ -9,9 +9,7 @@ export interface ICoach {
    email?: string;
 }
 
-
-
-export let coachs: ICoach[] = [
+export const coachs: ICoach[] = [
    {
       id: 1,
       avatar: "https://www.gravatar.com/avatar/9425665a85f0824de038bd646efe5024",

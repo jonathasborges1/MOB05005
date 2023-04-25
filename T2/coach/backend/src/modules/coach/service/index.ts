@@ -1,5 +1,6 @@
-import { ICoach, coachs } from 'model/coach';
-import { validateId } from 'utils';
+
+import { ICoach, coachs } from '@modules/coach/model';
+import { validateId } from '@utils/validate';
 
 class CoachService {
 

@@ -1,15 +1,21 @@
 {
    "compilerOptions": {
+     "target": "es6",
      "module": "commonjs",
      "esModuleInterop": true,
-     "target": "es5",
+     "sourceMap": true,
+     "resolveJsonModule": true,
+     "experimentalDecorators":true, // faz funcionar o inversify
      "moduleResolution": "node",
      "outDir": "dist",
      "jsx": "react",
      "baseUrl": "./",
      "paths": {
-       "*": ["node_modules/*", "src/*"]    
+       "@modules/*": ["./src/modules/*"],
+       "@utils/*": ["./src/utils/*"],
+       "@ioc/*": ["./src/ioc/*"]
      }
    },
-   "exclude": ["node_modules", "dist"]
+   "include": ["./src/**/*"],
+   "exclude": ["node_modules", "**/*.spec.ts" , "./dist"]
  }
