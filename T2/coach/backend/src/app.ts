@@ -10,7 +10,7 @@ class App {
     this.express = express();
     this.middlewares();
     this.routes();
-    // this.errorHandling();
+    this.errorHandling();
   }
 
   private middlewares(): void {
@@ -22,22 +22,22 @@ class App {
    this.express.use(routes);
   }
 
-  // private errorHandling(): void {
-  //  // Middleware para tratar erros de rota não encontrada
-  //  this.express.use((req: express.Request, res: express.Response, next: express.NextFunction) => {
-  //    const error = new Error('Rota não encontrada');
-  //    res.status(404);
-  //    next(error);
-  //  });
+  private errorHandling(): void {
+   // Middleware para tratar erros de rota não encontrada
+   this.express.use((req: express.Request, res: express.Response, next: express.NextFunction) => {
+     const error = new Error('Rota não encontrada');
+     res.status(404);
+     next(error);
+   });
 
-  //  // Middleware para tratar erros internos do servidor
-  //  this.express.use((error: any, req: express.Request, res: express.Response, next: express.NextFunction) => {
-  //    res.status(500).json({
-  //      message: 'Ocorreu um erro interno no servidor',
-  //      error: error.message
-  //    });
-  //  });
-  // }
+   // Middleware para tratar erros internos do servidor
+   this.express.use((error: any, req: express.Request, res: express.Response, next: express.NextFunction) => {
+     res.status(500).json({
+       message: 'Ocorreu um erro interno no servidor',
+       error: error.message
+     });
+   });
+  }
 
 }
 

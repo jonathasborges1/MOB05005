@@ -1,38 +1,47 @@
+
 export interface ICoach {
-   id: number;
+   id: string;
    avatar?: string;
    bio?: string;
-   cost?: number;
+   cost?: string; // Valor por Hora $$ -> R$100
    name: string;
-   subject?: string
+   subject?: string; // Materia/Disciplina -> Matematica
    whatsapp?: string;
    email?: string;
 }
 
+export interface Schedule {
+   coachId: number;
+   week_day: number; // 0 a 6 -> Segunda a domingo
+   from: number; // Horario inicio -> 8:00
+   to: number; // Horario fim -> 9:00
+}
+
+
 export const coachs: ICoach[] = [
    {
-      id: 1,
+      id: "cc7978f7-63e0-4189-b7ec-4db44eda6eac",
       avatar: "https://www.gravatar.com/avatar/9425665a85f0824de038bd646efe5024",
       bio: "Eu sou um coach experiente em Desenvolviento de Software e gestão de equipes.",
-      cost: 85,
+      cost: "85",
       name: "Jonathas Borges",
       subject: "Tech Lead",
       whatsapp: "5592988410440"
    },
    {
-      id: 2,
+      id: "92e9ebfd-8f91-4504-a10b-c1ec46a6d739",
       avatar: "https://www.example.com/avatar2",
       bio: "Eu ajudo jovens a desenvolverem habilidades para entrar no mercado de trabalho.",
-      cost: 30,
+      cost: "30",
       name: "Ana Souza",
       subject: "Carreira",
       whatsapp: "(21) 99999-9999"
    },
    {
-      id: 3,
+      id: "4f289bdd-1c3b-48e5-9817-ed97f6ce1638",
       avatar: "https://www.example.com/avatar3",
       bio: "Eu ajudo pessoas a melhorarem a saúde física e mental por meio do esporte.",
-      cost: 80,
+      cost: "80",
       name: "Pedro Santos",
       subject: "Saúde",
       whatsapp: "(31) 99999-9999"

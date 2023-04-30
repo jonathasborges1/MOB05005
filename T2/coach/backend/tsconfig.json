@@ -11,9 +11,13 @@
      "jsx": "react",
      "baseUrl": "./",
      "paths": {
+       "@config/*": ["./src/config/*"],
+       "@database/*": ["./src/database/*"],
+       "@ioc/*": ["./src/ioc/*"],
        "@modules/*": ["./src/modules/*"],
+       "@routes/*": ["./src/routes/*"],
+       "@sequelize/*": ["./src/sequelize/*"],
        "@utils/*": ["./src/utils/*"],
-       "@ioc/*": ["./src/ioc/*"]
      }
    },
    "include": ["./src/**/*"],

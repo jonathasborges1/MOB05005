@@ -4,7 +4,7 @@ class SubjectService {
    
    /* Buscar Todos */
    async getAll(): Promise<ISubject[]> {
-      console.log("coachs: ", subjects)
+      console.info("[Info]:[coachs]: ", subjects)
       return subjects;
    };
 }

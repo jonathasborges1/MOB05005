@@ -1,0 +1,14 @@
+{
+   "Servers": {
+       "1": {
+           "Name": "db_coach4me",
+           "Group": "Servers",
+           "Host": "db",
+           "Port": 5432,
+           "MaintenanceDB": "postgres",
+           "Username": "root",
+           "Password": "root",
+           "Database": "db_coach4me"
+       }
+   }
+}
