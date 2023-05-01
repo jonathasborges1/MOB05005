@@ -5,8 +5,6 @@ import { Request, Response } from 'express';
 import CoachService from '@modules/coach/service';
 import { QueryParams } from '@modules/coach/model';
 
-
-
 @injectable()
 class CoachController {
    private readonly coachService: CoachService;

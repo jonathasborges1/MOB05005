@@ -1,10 +1,9 @@
 import "./styles.css";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import whatsappIcon from "@assets/images/icons/whatsapp.svg";
-import ListDaysAndHours from "@components/ListDaysAndHours";
+import ListDaysAndHours, { ListDaysAndHoursProps } from "@components/ListDaysAndHours";
 import api from "@services/api";
-
 export interface Coach {
   id: number;
   avatar: string;
@@ -15,34 +14,30 @@ export interface Coach {
   whatsapp: string;
 }
 
-// eslint-disable-next-line @typescript-eslint/no-redeclare
-export interface ListDaysAndHours {
-  id: string;
-  week_day: string;
-  from: string;
-  to: string;
-  class_id: string;
-}
-
 interface CoachItemProps {
   coach: Coach;
 }
 
 const CoachItem: React.FC<CoachItemProps> = ({ coach }) => {
+  const [listDayHourCoaches, setListDayHourCoaches] = useState<ListDaysAndHoursProps[]>([]);
+
+  async function listDays(coachid: number) {
+    const response = await api.get("schedule", { // ListDaysAndHours
+      params: { coachid },
+    });
+
+    setListDayHourCoaches(response.data as ListDaysAndHoursProps[]);
+  }
+
+  useEffect(() => {
+    listDays(coach.id);
+  }, []);
+
+
   function createNewConnection() {
     api.post("connections", {
       coach_id: coach.id,
     });
-  }
-
-  const [listDayHour, setCoaches] = useState([]);
-  listDays(coach.id);
-  async function listDays(coach_id: number) {
-    const response = await api.get("ListDaysAndHours", {
-      params: { coach_id },
-    });
-
-    setCoaches(response.data);
   }
 
   return (
@@ -57,8 +52,8 @@ const CoachItem: React.FC<CoachItemProps> = ({ coach }) => {
       <p>{coach.bio}</p>
       <div className="cards-list">
         <hr></hr>
-        {listDayHour.map((listDays: ListDaysAndHours) => {
-          return <ListDaysAndHours listDaysHour={listDays} />;
+        {listDayHourCoaches.map((listDays: ListDaysAndHoursProps, index: number) => {
+          return <ListDaysAndHours key={index} listDaysHour={listDays} />;
         })}
       </div>
       <footer>

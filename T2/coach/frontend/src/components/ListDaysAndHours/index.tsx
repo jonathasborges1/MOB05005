@@ -2,44 +2,37 @@ import "./styles.css";
 import React from "react";
 
 import convertMinutesToHour from "@utils/convertMinutesToHour";
-import convertNumberToDay from "@utils/convertNumberToDay";
-import api from "@services/api";
+import { applyMaskHour, convertNumberToDay } from "@utils/convertNumberToDay";
 
-export interface ListDaysAndHour {
+export interface ListDaysAndHoursProps {
   id: string;
-  week_day: string;
+  dayOfWeek: string;
   from: string;
   to: string;
   class_id: string;
 }
-
 interface DayHoursItemProps {
-  listDaysHour: ListDaysAndHour;
+  listDaysHour: ListDaysAndHoursProps;
 }
 
 const ListDaysAndHours: React.FC<DayHoursItemProps> = ({ listDaysHour }) => {
-  const coach_id = listDaysHour.id;
-  const response = api.get("ListDaysAndHours", {
-    params: { coach_id },
-  });
 
-  console.log(response);
   return (
     <div className="listdayhour" >
       <div className="dayhour">
         Disponível{" "}
         <span className="dayhourValue">
-          {convertNumberToDay(parseInt(listDaysHour.week_day))}
+          {convertNumberToDay(parseInt(listDaysHour.dayOfWeek))}
         </span>
       </div>
       <div className="dayhour">
         Horário{" "}
         <span className="dayhourValue">
-          {convertMinutesToHour(parseInt(listDaysHour.from))}
+          {applyMaskHour(listDaysHour.from)}
         </span>{" "}
         até{" "}
         <span className="dayhourValue">
-          {convertMinutesToHour(parseInt(listDaysHour.to))}
+          {applyMaskHour(listDaysHour.to)}
         </span>
       </div>
     </div>

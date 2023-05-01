@@ -1,8 +1,12 @@
 import { Sequelize } from 'sequelize-typescript';
+
 import appConfig from '@config/config';
-import { initCoachs, initSchedules } from '@modules/coach/model';
+
 import Coach from '@database/models/coach';
 import CoachSchedule  from '@database/models/schedule';
+
+import { initCoachs } from '@modules/coach/model';
+import { initSchedules } from '@modules/schedule/model';
 
 // Criar a instancia do banco de dados
 export const sequelize = new Sequelize({

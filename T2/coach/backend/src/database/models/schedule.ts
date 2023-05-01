@@ -1,6 +1,6 @@
 import { Table, Column, Model, ForeignKey, DataType, BelongsTo } from 'sequelize-typescript';
 
-import { ICoachSchedule } from '@modules/coach/model';
+import { ICoachSchedule } from '@modules/schedule/model';
 import Coach from '@database/models/coach';
 
 @Table
