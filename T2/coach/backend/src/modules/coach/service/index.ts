@@ -1,7 +1,9 @@
 
 import QueryString from 'qs';
+import { Op } from 'sequelize';
 
-import { ICoach, coachs } from '@modules/coach/model';
+import { ICoach, QueryParams, initCoachs } from '@modules/coach/model';
+import  CoachSchedule  from '@database/models/schedule';
 import { convertHourToMinutes } from '@utils/index';
 import { validateId } from '@utils/validate';
 import Coach from '@database/models/coach';
@@ -15,6 +17,37 @@ class CoachService {
       return coaches;
    };
 
+   /* Buscar Coach com base nos horarios disponiveis */
+   async getAvailableCoaches(filters?: QueryParams): Promise<ICoach[]>{
+      const { subject, dayOfWeek, time } = filters;
+
+      const where = subject ? { subject } : {};
+
+      if (subject) {
+         where.subject = subject;
+      }
+
+      let include = {
+         model: CoachSchedule,
+         where: {} as any,
+         required: true,
+       };
+
+       if (dayOfWeek) {
+         include.where.dayOfWeek = dayOfWeek;
+       }
+
+      if (time) {
+         const timeInMinutes = convertHourToMinutes(time.toString());
+         include.where.from = { [Op.lte]: timeInMinutes };
+         include.where.to = { [Op.gte]: timeInMinutes };
+      }
+
+      const coaches = await Coach.findAll({ where, include, });
+
+      return coaches;
+   }
+
    /* Buscar Todos */
    async getAll(filters?: QueryString.ParsedQs): Promise<ICoach[]> {
 
@@ -25,12 +58,12 @@ class CoachService {
       // Se nao tiver filtros, retorna todos
       if ((!filters.week_day) || (!filters.subject) || (!filters.time)) {
          // throw new Error("Missing filters to search classes");
-         return coachs;
+         return initCoachs;
       }
 
       const timeInMinutes = convertHourToMinutes(time);
 
-     return coachs;
+     return initCoachs;
    };
    
    // /* C - Create - Criar */

@@ -1,6 +1,7 @@
 
-import { Model, Table, Column, DataType } from 'sequelize-typescript';
+import { Model, Table, Column, DataType, HasMany } from 'sequelize-typescript';
 import { ICoach } from '@modules/coach/model';
+import CoachSchedule from '@database/models/schedule';
 
 @Table({ tableName: 'coach' })
 export default class Coach extends Model<ICoach> {
@@ -29,5 +30,8 @@ export default class Coach extends Model<ICoach> {
    @Column({ type: DataType.STRING, allowNull: true })
    email: string;
    
+   // relacionamento de "um-para-muitos"
+   @HasMany(() => CoachSchedule)
+   schedules: CoachSchedule[];
 }
 

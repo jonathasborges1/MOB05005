@@ -2,6 +2,7 @@ import express from 'express';
 import cors from 'cors';
 
 import routes from './routes';
+import { syncDatabase } from '@config/database';
 
 class App {
   public express: express.Application;
@@ -11,6 +12,7 @@ class App {
     this.middlewares();
     this.routes();
     this.errorHandling();
+    syncDatabase();
   }
 
   private middlewares(): void {
