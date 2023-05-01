@@ -35,3 +35,8 @@ apos iniciar o projeto voce podera ver o banco populado pelo painel do pgadmin
 ![Screenshot 2023-05-01 120130](https://user-images.githubusercontent.com/12356493/235483854-6baa72cd-2b7f-42d6-85c8-bc340a0613c8.png)
 
 obs: alguns objetos foram inseridos no codigo para popular o banco no momento da sua execucao
+
+Caso queira desligar o servico em docker, bastas executar o comando
+```
+docker-compose down
+```
