@@ -25,10 +25,16 @@ senha: root
 
 
 apos subir os servicos posgrest e pgadmin em docker, execute o projeto
+Instale as depencias
+```
+yarn install
+```
 
+execute o projeto
 ```
 yarn start
 ```
+
 
 apos iniciar o projeto voce podera ver o banco populado pelo painel do pgadmin 
 
