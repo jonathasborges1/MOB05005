@@ -1,4 +1,4 @@
-O projeto coach4me faz uso de docker-compose.yml que esta responsabel por tornar disponivel o banco de dados posgrest em docker
+O projeto coach4me faz uso de docker-compose.yml que esta responsavel por tornar disponivel o banco de dados posgrest em docker
 
 O projeto faz uso da estrutra API Rest Full para prover as rotas necessarias ao frontend da aplicacao
 
